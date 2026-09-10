@@ -1,0 +1,224 @@
+<!DOCTYPE html>
+<html lang="en">
+
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+
+    <title>Password Strength Checker</title>
+
+    <link rel="stylesheet" href="{{ url_for('static', filename='style.css') }}">
+</head>
+
+<body>
+
+<div class="container">
+
+    <h1>🔐 Password Strength Checker</h1>
+
+    <div class="card">
+
+        <form method="POST" action="/">
+
+            <label for="password">
+                Enter your password:
+            </label>
+
+            <div class="password-box">
+
+                <input
+                    type="password"
+                    id="password"
+                    name="password"
+                    value="{{ password }}"
+                    placeholder="Enter password"
+                >
+
+                <button
+                    type="button"
+                    onclick="togglePassword()"
+                    id="showButton">
+                    👁
+                </button>
+
+            </div>
+
+            <div class="requirements">
+
+                <h3>Password must contain:</h3>
+
+                <p>
+                    {% if requirements.length %}
+                    ✓
+                    {% else %}
+                    ❌
+                    {% endif %}
+                    8+ characters
+                </p>
+
+                <p>
+                    {% if requirements.upper %}
+                    ✓
+                    {% else %}
+                    ❌
+                    {% endif %}
+                    Uppercase letter
+                </p>
+
+                <p>
+                    {% if requirements.lower %}
+                    ✓
+                    {% else %}
+                    ❌
+                    {% endif %}
+                    Lowercase letter
+                </p>
+
+                <p>
+                    {% if requirements.number %}
+                    ✓
+                    {% else %}
+                    ❌
+                    {% endif %}
+                    Number
+                </p>
+
+                <p>
+                    {% if requirements.special %}
+                    ✓
+                    {% else %}
+                    ❌
+                    {% endif %}
+                    Special character
+                </p>
+
+            </div>
+
+            <button
+                type="submit"
+                class="check-btn">
+                🔍 Check Password
+            </button>
+
+        </form>
+
+
+        <a href="/generate">
+            <button
+                type="button"
+                class="generate-btn">
+                🔑 Generate Strong Password
+            </button>
+        </a>
+
+
+        <button
+            type="button"
+            class="copy-btn"
+            onclick="copyPassword()">
+            📋 Copy Password
+        </button>
+
+
+        {% if score is not none %}
+
+        <div class="result">
+
+            <h2>
+                Score: {{ score }}/5
+            </h2>
+
+            <h2 class="{{ strength|lower }}">
+                Password Strength: {{ strength }}
+            </h2>
+            <div class="progress">
+
+    <div
+        class="progress-fill {{ strength|lower }}"
+        data-score="{{ score }}">
+    </div>
+
+</div>
+
+            {% if suggestions %}
+
+            <div class="suggestions">
+
+                <h3>💡 Suggestions:</h3>
+
+                {% for suggestion in suggestions %}
+
+                <p>
+                    ❌ {{ suggestion }}
+                </p>
+
+                {% endfor %}
+
+            </div>
+
+            {% else %}
+
+            <div class="success">
+                🎉 Excellent! Your password meets all requirements.
+            </div>
+
+            {% endif %}
+
+        </div>
+
+        {% endif %}
+
+    </div>
+
+</div>
+
+
+<script>
+
+function togglePassword() {
+    const progressFill = document.querySelector(".progress-fill");
+
+if (progressFill) {
+    const score = progressFill.dataset.score;
+    progressFill.style.width = (score * 20) + "%";
+}
+
+    const password = document.getElementById("password");
+    const button = document.getElementById("showButton");
+
+    if (password.type === "password") {
+
+        password.type = "text";
+        button.textContent = "🔒";
+
+    } else {
+
+        password.type = "password";
+        button.textContent = "👁";
+
+    }
+}
+
+
+function copyPassword() {
+
+    const password = document.getElementById("password");
+
+    if (password.value === "") {
+
+        alert("Please enter or generate a password first.");
+        return;
+
+    }
+
+    navigator.clipboard.writeText(password.value);
+
+    alert("Password copied!");
+
+}
+
+</script>
+
+</body>
+
+</html>

@@ -1,0 +1,166 @@
+* {
+    box-sizing: border-box;
+}
+
+body {
+    margin: 0;
+    padding: 0;
+    font-family: Arial, sans-serif;
+    background: #f4f6f8;
+}
+
+.container {
+    width: 90%;
+    max-width: 650px;
+    margin: 50px auto;
+}
+
+h1 {
+    text-align: center;
+    margin-bottom: 25px;
+}
+
+.card {
+    background: white;
+    padding: 30px;
+    border-radius: 15px;
+    box-shadow: 0 5px 20px rgba(0, 0, 0, 0.1);
+}
+
+label {
+    display: block;
+    font-weight: bold;
+    margin-bottom: 10px;
+}
+
+.password-box {
+    display: flex;
+    gap: 8px;
+}
+
+.password-box input {
+    flex: 1;
+    padding: 12px;
+    font-size: 16px;
+    border: 1px solid #aaa;
+    border-radius: 7px;
+}
+
+.password-box button {
+    width: 55px;
+    border: none;
+    border-radius: 7px;
+    cursor: pointer;
+    font-size: 18px;
+}
+
+.requirements {
+    margin-top: 20px;
+    padding: 15px;
+    background: #f8f9fa;
+    border-radius: 8px;
+}
+
+.requirements h3 {
+    margin-top: 0;
+}
+
+.requirements p {
+    margin: 7px 0;
+}
+
+.check-btn,
+.generate-btn,
+.copy-btn {
+    width: 100%;
+    padding: 13px;
+    margin-top: 15px;
+    border: none;
+    border-radius: 8px;
+    font-size: 15px;
+    font-weight: bold;
+    cursor: pointer;
+}
+
+.check-btn {
+    background: #222;
+    color: white;
+}
+
+.generate-btn {
+    background: #555;
+    color: white;
+}
+
+.copy-btn {
+    background: #777;
+    color: white;
+}
+
+.check-btn:hover,
+.generate-btn:hover,
+.copy-btn:hover {
+    opacity: 0.85;
+}
+
+.result {
+    margin-top: 25px;
+    padding: 20px;
+    background: #f8f9fa;
+    border-radius: 10px;
+}
+
+.weak {
+    color: red;
+}
+
+.medium {
+    color: orange;
+}
+
+.strong {
+    color: green;
+}
+
+.progress {
+    width: 100%;
+    height: 20px;
+    border: 1px solid #333;
+    border-radius: 10px;
+    overflow: hidden;
+    margin: 15px 0;
+}
+
+.progress-fill {
+    height: 100%;
+}
+
+.progress-fill.weak {
+    background: red;
+}
+
+.progress-fill.medium {
+    background: orange;
+}
+
+.progress-fill.strong {
+    background: green;
+}
+
+.suggestions {
+    margin-top: 15px;
+}
+
+.suggestions p {
+    margin: 7px 0;
+}
+
+.success {
+    margin-top: 15px;
+    font-weight: bold;
+    color: green;
+}
+
+a {
+    text-decoration: none;
+}
